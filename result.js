@@ -47,7 +47,7 @@ new Chart(document.getElementById("resultChart"), {
             data: [scores.vata, scores.pitta, scores.kapha],
             backgroundColor: ["blue", "red", "green"],
             maxBarThickness: 75, // ここで棒の幅を指定（お好みで調整可能）
-            responsive: true,
+            responsive: false,
             maintainAspectRatio: false
         }]
     }
@@ -78,7 +78,4 @@ else if ((scores.pitta + scores.kapha ) > scores.vata && scores.pitta>scores.vat
 else if ((scores.vata + scores.kapha ) > scores.pitta && scores.vata>scores.pitta && scores.kapha>scores.pitta) 
     {description.innerText = "あなたは【ヴァータ・カパ】タイプです。冷えやすさと相反する性質の調整が課題となります！";} 
 else {description.innerText = "あなたは【サマプラクリティ】タイプです。バランスが良いものの、変化しやすい傾向があります！";}
-
-
-
 
