@@ -21,6 +21,9 @@ function resizeCanvas() {
 
 
 
+// サイズ調整はチャート描画前に
+resizeCanvas();
+
 
 
 const params = new URLSearchParams(window.location.search);
@@ -34,8 +37,6 @@ const description = document.getElementById('description');
 
 
 
-
-
 // 診断結果を表示
 new Chart(document.getElementById("resultChart"), {
     type: "bar",
@@ -45,7 +46,7 @@ new Chart(document.getElementById("resultChart"), {
             label: "あなたの体質スコア",
             data: [scores.vata, scores.pitta, scores.kapha],
             backgroundColor: ["blue", "red", "green"],
-            maxbarThickness: 50, // ここで棒の幅を指定（お好みで調整可能）
+            maxBarThickness: 75, // ここで棒の幅を指定（お好みで調整可能）
             responsive: true,
             maintainAspectRatio: false
         }]
@@ -54,9 +55,11 @@ new Chart(document.getElementById("resultChart"), {
 
 
 
+window.addEventListener("resize", () => {
+    resizeCanvas();
+    chart.resize();
+});
 
-resizeCanvas();
-window.addEventListener("resize", resizeCanvas);
 
 
 
@@ -75,6 +78,7 @@ else if ((scores.pitta + scores.kapha ) > scores.vata && scores.pitta>scores.vat
 else if ((scores.vata + scores.kapha ) > scores.pitta && scores.vata>scores.pitta && scores.kapha>scores.pitta) 
     {description.innerText = "あなたは【ヴァータ・カパ】タイプです。冷えやすさと相反する性質の調整が課題となります！";} 
 else {description.innerText = "あなたは【サマプラクリティ】タイプです。バランスが良いものの、変化しやすい傾向があります！";}
+
 
 
 
